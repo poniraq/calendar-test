@@ -17,7 +17,7 @@ export default class AuthController {
   @Get('/callback', [
     GoogleAuthMiddleware
   ])
-  googleCallback(
+  callback(
     @Response() res: Res
   ) {
     res.redirect('/');

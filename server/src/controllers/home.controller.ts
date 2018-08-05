@@ -1,24 +1,29 @@
 import { Injectable } from '@decorators/di';
-import { Controller, Get, Request, Response } from '@decorators/express';
-import { Request as Req, Response as Res } from 'express';
-
+import { Controller, Get, Next, Request, Response } from '@decorators/express';
+import { NextFunction, Request as Req, Response as Res } from 'express';
+import { AuthMiddleware } from 'middleware/auth.middleware';
+import { CalendarService } from 'services/calendar.service';
 
 @Injectable()
-@Controller('/')
+@Controller('/', [
+  AuthMiddleware
+])
 export default class HomeController {
-  constructor() {}
+  constructor(
+    private calendar: CalendarService
+  ) {}
 
   @Get('/')
   index(
     @Request() req: Req,
-    @Response() res: Res
+    @Response() res: Res,
+    @Next() next: NextFunction
   ) {
     const user = req.user;
 
-    if (user) {
-      res.send(user.email);
-    } else {
-      res.sendStatus(404);
-    }
+    this.calendar
+      .getCalendarList(user)
+      .then(result => res.json(result))
+      .catch(next);
   }
 }

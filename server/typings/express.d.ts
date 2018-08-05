@@ -5,7 +5,7 @@ declare module 'express' {
   export interface Request {
     id: string;
     
-    user_instance?: User;
+    user?: User;
     include?: IExtIncludeOptions[]
   }
 }
