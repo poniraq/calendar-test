@@ -14,12 +14,13 @@ module.exports = {
       updatedAt: { type: Sequelize.DATE, allowNull: false },
       
       email: { type: Sequelize.STRING, unique: true },
-      password: { type: Sequelize.STRING },
 
-      role: { type: Sequelize.STRING, defaultValue: 'USER' }
+      provider: { type: Sequelize.STRING },
+      accessToken: { type: Sequelize.STRING },
+      refreshToken: { type: Sequelize.STRING }
     });
   },
-  down: (queryInterface, Sequelize) => {
+  down: (queryInterface) => {
     return queryInterface.dropTable('Users');
   }
 };

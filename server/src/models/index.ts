@@ -9,7 +9,7 @@ config.modelPaths = [
   resolve(__dirname, './**/*.model.js')
 ];
 
-export { User, Admin, GenericUser } from './user';
-
 const sequelize = new Sequelize(config);
+
+export * from './user.model'
 export { sequelize, sequelize as default };

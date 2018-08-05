@@ -5,7 +5,7 @@ module.exports = {
     driver: 'pg',
     username: 'postgres',
     password: null,
-    database: 'example_db',
+    database: 'calendar_dev',
     host: 'localhost',
     dialect: 'postgres',
 

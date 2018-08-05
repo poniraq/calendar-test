@@ -1,1 +1,0 @@
-export const JwtSecret = '__JWT_SECRET__';
