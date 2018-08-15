@@ -10,7 +10,9 @@ export class GoogleAuthMiddleware implements Middleware {
         'https://www.googleapis.com/auth/userinfo.email',
         'https://www.googleapis.com/auth/calendar.readonly'
       ],
-      failureRedirect: '/auth/login'
+      failureRedirect: '/auth/login',
+      prompt: 'consent',
+      accessType: 'offline'
     });
 
     return handler(request, response, next);

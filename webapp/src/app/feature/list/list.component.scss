@@ -1,0 +1,17 @@
+@import 'colors.scss';
+@import 'fonts.scss';
+
+:host {
+  display: flex;
+  flex: 1;
+  padding: 16px;
+}
+
+.calendar-list {
+  flex: 1;
+
+  .calendar-tile {
+    background-color: white;
+    @include fluid-type(320px, 1200px, 12px, 32px);
+  }
+}

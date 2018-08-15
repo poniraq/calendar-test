@@ -1,0 +1,46 @@
+@import 'colors.scss';
+@import 'fonts.scss';
+
+:host {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.header {
+  color: $primary-text-color;
+  background: $primary-color;
+  padding: 16px 32px;
+  
+  @include fluid-type(500px, 800px, 26px, 32px);
+}
+
+.body {
+  overflow-y: auto;
+  
+  .item {
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid lightgray;
+    height: 80px;
+    padding: 32px;
+  
+    .summary {
+      color: black;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+  
+    .timespan {
+      color: #636363;
+      font-size: 20px;
+    }
+  }
+}
+
+.add-btn {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}

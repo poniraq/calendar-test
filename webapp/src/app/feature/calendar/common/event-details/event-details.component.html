@@ -1,0 +1,58 @@
+<div class="header">
+  {{ calendar.summary }}
+</div>
+<div *ngIf="!event" class="no-event">
+  <span>No current event :(</span>
+</div>
+<div *ngIf="event" [ngSwitch]="mode" class="body">
+
+  <!-- DISPLAY -->
+  <ng-container *ngSwitchCase="MODE.DISPLAY">
+    <div class="info">
+      <h1 class="summary mat-display-1">
+        {{ event.summary }}
+      </h1>
+      <h2 class="timespan mat-h2">
+        {{ event.start.date | date:'HH:mm' }} - {{ event.end.date | date:'HH:mm' }}
+      </h2>
+      <h2 *ngIf="timeLeft" class="left mat-subheading-2">
+        {{ timeLeft }} left
+      </h2>
+    </div>
+
+    <div class="actions">
+      <button mat-flat-button (click)="onExtendClick()">Extend</button>
+      <button mat-flat-button>End</button>
+    </div>
+  </ng-container>
+
+  <!-- EXTEND -->
+  <ng-container *ngSwitchCase="MODE.EXTEND">
+    <div class="info">
+      <h1 class="summary mat-display-1">
+        {{ event.summary }}
+      </h1>
+      <h2 class="timespan mat-h2">
+        {{ event.start.date | date:'HH:mm' }} - {{ event.end.date | date:'HH:mm' }}
+      </h2>
+      <h2 *ngIf="timeLeft" class="left mat-subheading-2">
+        {{ timeLeft }} left
+      </h2>
+
+      <mat-grid-list class="extend" cols="3" rowHeight="fit" gutterSize="16px">
+        <mat-grid-tile><button mat-flat-button (click)="extend(5)">+5 Min</button></mat-grid-tile>
+        <mat-grid-tile><button mat-flat-button (click)="extend(10)">+10 Min</button></mat-grid-tile>
+        <mat-grid-tile><button mat-flat-button (click)="extend(15)">+15 Min</button></mat-grid-tile>
+        <mat-grid-tile><button mat-flat-button (click)="extend(30)">+30 Min</button></mat-grid-tile>
+        <mat-grid-tile><button mat-flat-button (click)="extend(45)">+45 Min</button></mat-grid-tile>
+        <mat-grid-tile><button mat-flat-button (click)="extend(60)">+60 Min</button></mat-grid-tile>
+      </mat-grid-list>
+
+    </div>
+
+    <div class="actions">
+        <button mat-flat-button>Done</button>
+        <button mat-flat-button (click)="onCancelClick()">Cancel</button>
+    </div>
+  </ng-container>
+</div>

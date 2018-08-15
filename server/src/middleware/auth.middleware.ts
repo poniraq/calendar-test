@@ -1,10 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
 import { Middleware } from '@decorators/express';
+import { Unauthorized } from 'http-errors';
 
 export class AuthMiddleware implements Middleware {
-  use(request: Request, response: Response, next: NextFunction): void {
-    if (request.isUnauthenticated()) return response.redirect('/auth/login');
-
+  use(request: Request, _response: Response, next: NextFunction): void {
+    if (request.isUnauthenticated()) return next(new Unauthorized);
     next();
   }
 };

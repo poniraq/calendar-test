@@ -1,15 +1,18 @@
 require('preload');
 
 import * as express from 'express';
+import * as ExpressWS from 'express-ws';
 import { attachControllers } from '@decorators/express';
 
 import { GlobalMiddleware } from 'middleware/global';
 import { all } from 'controllers';
 
 const app = express();
-app.use(GlobalMiddleware);
+ExpressWS(app);
 
+app.use(GlobalMiddleware);
 attachControllers(app, all);
-app.listen(3000, () => {
+
+app.listen(3000, 'localhost', () => {
   console.log('listening on port 3000');
 });

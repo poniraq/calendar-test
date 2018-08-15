@@ -1,0 +1,7 @@
+<mat-grid-list class="calendar-list" cols="3" rowHeight="2:1" gutterSize="16px">
+  <ng-container *ngIf="calendars | async as list">
+    <mat-grid-tile class="calendar-tile mat-elevation-z1" *ngFor="let item of list.items" (click)="select(item)">
+      {{ item.summary }}
+    </mat-grid-tile>
+  </ng-container>
+</mat-grid-list>

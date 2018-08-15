@@ -3,6 +3,8 @@ import { web as GoogleCreds } from 'config/google_creds';
 import { OAuth2Client } from 'google-auth-library';
 import { calendar_v3, google } from 'googleapis';
 import { User } from 'models';
+import { RefreshToken } from 'utils/annotations';
+
 
 @Injectable()
 export class CalendarService {
@@ -21,34 +23,75 @@ export class CalendarService {
     });
   }
 
-  getCalendarList(user: User) {
-    this.$setCredentials(user);
+  @RefreshToken()
+  list(user: User, syncToken?: string) {
+    const params = syncToken ? { syncToken } : { minAccessRole: 'writer' };
 
-    return this.calendar
-      .calendarList
-      .list()
-      .then(
-        result => result.data,
-        err => { throw err }
-      );
+    return this.do(user)
+      .then(() => this.calendar.calendarList.list(params))
+      .then(list => list.data);
   }
 
-  getCalendar(user: User, id: string) {
-    this.$setCredentials(user);
-
-    return this.calendar
-      .calendars
-      .get({ calendarId: id })
-      .then(
-        result => result.data,
-        err => { throw err }
-      );
+  @RefreshToken()
+  get(user: User, id: string): Promise<calendar_v3.Schema$Calendar> {
+    return this.do(user)
+      .then(() => this.calendar.calendars.get({
+        calendarId: id
+      }))
+      .then(result => result.data);
   }
+
+  @RefreshToken()
+  events(user: User, id: string, syncToken?: string): Promise<calendar_v3.Schema$Events> {
+    const now = new Date();
+    const tomorrow = new Date();
+    tomorrow.setDate(now.getDate() + 1);
+
+    const predicate = (event: calendar_v3.Schema$Event) => {
+      return event.start && event.start.dateTime && event.end && event.end.dateTime;
+    }
+
+    const params = syncToken ? {
+      syncToken: syncToken,
+      calendarId: id,
+      singleEvents: true
+    } : {
+      calendarId: id,
+      singleEvents: true,
+      timeMin: now.toISOString(),
+      timeMax: tomorrow.toISOString()
+    };
+
+    return this.do(user)
+      .then(() => this.calendar.events.list(params))
+      .then(result => result.data)
+      .then((events: calendar_v3.Schema$Events) => {
+        events.items = events.items.filter(predicate);
+        return events;
+      });
+  }
+
+  // watch(user: User, resource: string, id: string, sessionID: string) {
+  //   const now = new Date();
+  //   const tomorrow = new Date();
+  //   tomorrow.setDate(now.getDate() + 1);
+
+  //   this.calendar.events.watch({
+  //     calendarId: id,
+  //     singleEvents: true,
+  //     timeMin: now.toISOString(),
+  //     timeMax: tomorrow.toISOString()
+  //   })
+  // }
 
   // UTILS
-  private $setCredentials(user: User) {
+
+  private do(user: User): Promise<void> {
     this.auth.setCredentials({
-      access_token: user.accessToken
+      access_token: user.accessToken,
+      refresh_token: user.refreshToken
     });
+
+    return Promise.resolve();
   }
 }

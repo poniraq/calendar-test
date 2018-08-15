@@ -1,0 +1,83 @@
+@import 'colors.scss';
+@import 'fonts.scss';
+
+:host {
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  color: $primary-text-color;
+  background: $primary-color;
+  padding: 16px 32px;
+
+  @include fluid-type(500px, 800px, 26px, 32px);
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  
+  .info {
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    .summary {
+      font-weight: 600;
+      margin-bottom: 34px;
+
+      @include fluid-type(500px, 800px, 30px, 50px);
+    }
+
+    .timespan {
+      font-family: 'Roboto Slab', serif;
+      color: #636363;
+      
+      @include fluid-type(500px, 800px, 24px, 36px);
+    }
+
+    .extend {
+      flex: 1;
+
+      button {
+        width: 50%;
+        padding: 8px 0;
+        border-radius: 15px;
+      }
+    }
+  }
+}
+
+.actions {
+  display: flex;
+  padding: 16px 32px;
+  background: #f7f7f7;
+  border-top: 1px solid #e6e6e6;
+
+  button {
+    flex: 1;
+    font-size: 20px;
+    line-height: 48px;
+    &:first-child {
+      margin-right: 16px;
+    }
+  }
+}
+
+.no-event {
+  flex: 1;
+  background-color: #e8e8e8;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  
+  span {
+    flex: 1;
+    font-size: 40px;
+    color: #acacac;
+  }
+}

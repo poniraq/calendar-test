@@ -1,18 +1,20 @@
-import { serializeUser, deserializeUser, use, DoneFunction } from 'passport';
 import { User } from 'models';
+import * as passport from 'passport';
+import * as refresh from 'passport-oauth2-refresh';
 import { GoogleStrategy } from './google';
 
 
-use(GoogleStrategy);
-serializeUser(function(user: User, done: DoneFunction) {
+passport.use(GoogleStrategy);
+refresh.use(GoogleStrategy);
+passport.serializeUser(function(user: User, done: passport.DoneFunction) {
   const data: UserSerializationData = {
     id: user.id,
     email: user.email
-  };
+  };  
 
   done(null, data);
 });
-deserializeUser((obj: UserSerializationData, done: DoneFunction) => {
+passport.deserializeUser((obj: UserSerializationData, done: passport.DoneFunction) => {
   User
     .findById(obj.id)
     .then(user => done(null, user))
@@ -23,4 +25,4 @@ interface UserSerializationData {
   email: string;
 };
 
-export * from './google'
+export * from './google';
