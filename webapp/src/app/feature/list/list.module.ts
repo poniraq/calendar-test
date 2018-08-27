@@ -1,14 +1,13 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@app/feature/common/common.module';
+import { SharedModule } from '@app/shared';
 import { ListComponent } from './list.component';
 import { ListRouter } from './list.router';
-import { MaterialModule } from '@app/shared/material.module';
 
 @NgModule({
   imports: [
+    SharedModule,
     CommonModule,
-    MaterialModule,
-
     ListRouter
   ],
   declarations: [ListComponent]

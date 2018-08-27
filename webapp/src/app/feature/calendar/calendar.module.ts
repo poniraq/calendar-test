@@ -1,19 +1,25 @@
-import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MaterialModule } from '@app/shared/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { CommonModule } from '@app/feature/common/common.module';
+import { QRCodeModule } from 'angularx-qrcode';
 import { CalendarComponent } from './calendar.component';
 import { CalendarRouter } from './calendar.router';
-import { EventDetailsComponent } from './common/event-details/event-details.component';
-import { EventListComponent } from './common/event-list/event-list.component';
+import { EventCreateComponent } from './event-create/event-create.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
+import { EventListComponent } from './event-list/event-list.component';
+import { SharedModule } from '@app/shared';
 
 
 @NgModule({
   imports: [
+    SharedModule,
     CommonModule,
 
-    MaterialModule,
+    FlexLayoutModule,
+    QRCodeModule,
+
     CalendarRouter
   ],
-  declarations: [ CalendarComponent, EventListComponent, EventDetailsComponent ]
+  declarations: [ CalendarComponent, EventListComponent, EventDetailsComponent, EventCreateComponent ]
 })
 export class CalendarModule { }

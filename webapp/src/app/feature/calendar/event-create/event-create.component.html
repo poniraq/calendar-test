@@ -1,0 +1,11 @@
+<div fxLayoutAlign="center center" class="wrapper" (click)="onClick()">
+  <div class="qr-window mat-elevation-z5">
+    <div fxLayoutAlign="center center" class="code">
+      <qrcode [qrdata]="link" [size]="256" [level]="'M'"></qrcode>
+    </div>
+    <div class="message">
+      Tap anywhere to close
+    </div>
+  </div>
+</div>
+

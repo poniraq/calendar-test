@@ -71,19 +71,16 @@ export class CalendarService {
       });
   }
 
-  // watch(user: User, resource: string, id: string, sessionID: string) {
-  //   const now = new Date();
-  //   const tomorrow = new Date();
-  //   tomorrow.setDate(now.getDate() + 1);
-
-  //   this.calendar.events.watch({
-  //     calendarId: id,
-  //     singleEvents: true,
-  //     timeMin: now.toISOString(),
-  //     timeMax: tomorrow.toISOString()
-  //   })
-  // }
-
+  @RefreshToken()
+  patchEvent(user: User, calendarId: string, eventId: string, patch: any): Promise<calendar_v3.Schema$Event> {
+    return this.do(user)
+      .then(() => this.calendar.events.update({
+        calendarId,
+        eventId,
+        requestBody: patch
+      }))
+      .then(result => result.data)
+  }
   // UTILS
 
   private do(user: User): Promise<void> {

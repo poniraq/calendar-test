@@ -1,4 +1,5 @@
 @import 'colors.scss';
+@import 'queries.scss';
 @import 'fonts.scss';
 
 :host {
@@ -19,12 +20,14 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   
   .info {
     padding: 32px;
     display: flex;
     flex-direction: column;
     flex: 1;
+    color: $text-dark;
 
     .summary {
       font-weight: 600;
@@ -37,7 +40,7 @@
       font-family: 'Roboto Slab', serif;
       color: #636363;
       
-      @include fluid-type(500px, 800px, 24px, 36px);
+      @include fluid-type(500px, 800px, 30px, 56px);
     }
 
     .extend {
@@ -45,8 +48,10 @@
 
       button {
         width: 50%;
+        height: 25%;
+        min-height: 52px;
         padding: 8px 0;
-        border-radius: 15px;
+        border-radius: 3px;
       }
     }
   }
@@ -79,5 +84,18 @@
     flex: 1;
     font-size: 40px;
     color: #acacac;
+  }
+}
+
+
+@include fl-lt-md {
+  .header {
+    background: #ffffff;
+    border-bottom: 1px solid $border-color;
+    color: $text-dark;
+  }
+
+  .body {
+    background: $background-color;
   }
 }

@@ -8,7 +8,7 @@ export class GoogleAuthMiddleware implements Middleware {
       scope: [
         'https://www.googleapis.com/auth/plus.login',
         'https://www.googleapis.com/auth/userinfo.email',
-        'https://www.googleapis.com/auth/calendar.readonly'
+        'https://www.googleapis.com/auth/calendar'
       ],
       failureRedirect: '/auth/login',
       prompt: 'consent',

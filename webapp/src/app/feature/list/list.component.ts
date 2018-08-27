@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { CalendarEntry, CalendarService } from '@app/feature/common';
-import { ResourceCollection } from '@app/util/google';
+import { CalendarEntry, CalendarService, ICalendar, IResourceList } from '@app/feature/common/calendar';
 import { Observable } from 'rxjs';
 
 
@@ -11,16 +10,23 @@ import { Observable } from 'rxjs';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-  calendars: Observable<ResourceCollection<CalendarEntry>>;
+  private _calendars: Observable<IResourceList<CalendarEntry>>;
 
   constructor(
     public service: CalendarService,
     private router: Router
   ) {
-    this.calendars = service.list();
   }
 
-  select(item: CalendarEntry) {
+  select(item: ICalendar) {
     this.router.navigate(['calendar', item.id]);
+  }
+
+  get calendars() {
+    if (!this._calendars) {
+      this._calendars = this.service.list();
+    }
+
+    return this._calendars;
   }
 }

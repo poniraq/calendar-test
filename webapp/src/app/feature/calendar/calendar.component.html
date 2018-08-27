@@ -1,22 +1,27 @@
-<div class="header">
+<div
+  class="header"
+  ngClass.lt-md="mat-elevation-z1"
+  >
   <div class="date">{{ now | async | date:'LLLL d' }}</div>
   <span class="spacer"></span>
   <div class="time">{{ now | async | date:'HH:mm:ss' }}</div>
 </div>
-<div class="body">
-  <ng-container *ngIf="entry | async as calendar">
-    <app-event-details
-      class="event-details mat-elevation-z1"
-      (expired)="onEventExpiration($event)"
-      [calendar]="calendar"
-      [event]="currentEvent">
-    </app-event-details>
-  </ng-container>
+<div
+  class="body"
+  >
+  <app-event-details
+    class="event-details mat-elevation-z1"
+    [entry]="entry"
+    [event]="currentEvent"
+    (expired)="onEventExpiration($event)"
+    (update)="onEventUpdate($event)">
+  </app-event-details>
 
-  <ng-container *ngIf="events | async as list">
-    <app-event-list
-      class="event-list mat-elevation-z1"
-      [events]="list.items">
-    </app-event-list>
-  </ng-container>
+  <app-event-list
+    class="event-list mat-elevation-z1"
+    [events]="events"
+    (create)="onCreate()">
+  </app-event-list>
+
+  <app-event-create *ngIf="createLink" [link]="createLink" (close)="closeQROverlay()"></app-event-create>
 </div>

@@ -1,5 +1,7 @@
 @import 'colors.scss';
+@import 'queries.scss';
 @import 'fonts.scss';
+
 
 :host {
   background: #ffffff;
@@ -18,13 +20,17 @@
 
 .body {
   overflow-y: auto;
+  flex: 1;
   
   .item {
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid lightgray;
-    height: 80px;
+    height: 25%;
     padding: 32px;
+
+    overflow: hidden;
+    box-sizing: border-box;
   
     .summary {
       color: black;
@@ -43,4 +49,16 @@
   position: absolute;
   bottom: 16px;
   right: 16px;
+}
+
+@include fl-lt-md {
+  .header {
+    background: #ffffff;
+    border-bottom: 1px solid $border-color;
+    color: $text-dark;
+  }
+
+  .body {
+    background: $background-color;
+  }
 }

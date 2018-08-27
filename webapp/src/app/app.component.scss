@@ -1,7 +1,14 @@
+@import 'queries.scss';
+
 :host {
   display: flex;
   flex-direction: column;
   align-items: stretch;
 
+  height: 100%;
+}
+
+@include fl-lt-md {
+  display: block;
   height: 100%;
 }

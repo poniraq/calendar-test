@@ -1,0 +1,26 @@
+<div class="header">
+  Up Next
+</div>
+
+<div class="body">
+  <ng-container *ngIf="events | async as list">
+  <div
+    *ngFor="let item of list" class="item"
+    [@foldInOut]="true">
+    <span class="summary">
+      {{ item.summary || '(No title)' }}
+    </span>
+    <span class="timespan">
+      {{ item.start | date:'HH:mm' }} - {{ item.end | date:'HH:mm' }}
+    </span>
+  </div>
+  </ng-container>
+</div>
+
+<button mat-fab
+  *ngIf="showButton"
+  (click)="onAddClick()"
+  class="add-btn"
+  color="accent">
+  <mat-icon class="add-icon">add</mat-icon>
+</button>

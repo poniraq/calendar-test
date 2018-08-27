@@ -13,6 +13,6 @@ ExpressWS(app);
 app.use(GlobalMiddleware);
 attachControllers(app, all);
 
-app.listen(3000, 'localhost', () => {
+app.listen(3000, '0.0.0.0', () => {
   console.log('listening on port 3000');
 });
