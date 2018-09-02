@@ -4,7 +4,6 @@ import { CommonModule } from '@app/feature/common/common.module';
 import { QRCodeModule } from 'angularx-qrcode';
 import { CalendarComponent } from './calendar.component';
 import { CalendarRouter } from './calendar.router';
-import { EventCreateComponent } from './event-create/event-create.component';
 import { EventDetailsComponent } from './event-details/event-details.component';
 import { EventListComponent } from './event-list/event-list.component';
 import { SharedModule } from '@app/shared';
@@ -20,6 +19,6 @@ import { SharedModule } from '@app/shared';
 
     CalendarRouter
   ],
-  declarations: [ CalendarComponent, EventListComponent, EventDetailsComponent, EventCreateComponent ]
+  declarations: [ CalendarComponent, EventListComponent, EventDetailsComponent ]
 })
 export class CalendarModule { }

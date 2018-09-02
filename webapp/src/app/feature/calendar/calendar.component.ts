@@ -1,7 +1,6 @@
 import { trigger } from '@angular/animations';
 import { Component, HostBinding, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ClockService } from '@app/core/clock.service';
 import { CalendarEntry, CalendarEvent, CalendarService } from '@app/feature/common/calendar';
 import { fadeIn } from '@app/shared/animations';
 import { clone } from 'lodash';
@@ -24,18 +23,14 @@ export class CalendarComponent implements OnInit {
   id: string;
   entry: Observable<CalendarEntry>;
   currentEvent: CalendarEvent;
-  now: Observable<Date>;
   createLink: string;
 
   events: Observable<CalendarEvent[]>;
 
   constructor(
     private route: ActivatedRoute,
-    private service: CalendarService,
-    private clock: ClockService
-  ) {
-    this.now = this.clock.now;
-  }
+    private service: CalendarService
+  ) { }
 
   ngOnInit() {
     const id = this.id = this.route.snapshot.paramMap.get('id');

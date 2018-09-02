@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ConfigService } from '@app/core';
+import { ConfigService, ClockService } from '@app/core';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +10,8 @@ import { ConfigService } from '@app/core';
 export class AppComponent {
   constructor(
     private config: ConfigService,
-    private titleService: Title
+    private titleService: Title,
+    public clock: ClockService
   ) {
     titleService.setTitle(config.title);
   }

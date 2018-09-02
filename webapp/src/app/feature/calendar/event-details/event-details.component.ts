@@ -24,8 +24,10 @@ export class EventDetailsComponent implements OnInit {
 
   @Input() entry: Observable<CalendarEntry>;
   @Input() event: CalendarEvent;
-  @Output() expired: EventEmitter<CalendarEvent> = new EventEmitter();
-  @Output() update: EventEmitter<CalendarEvent> = new EventEmitter();
+
+  @Output() expired = new EventEmitter<CalendarEvent>();
+  @Output() update = new EventEmitter<CalendarEvent>();
+
 
   MODE = MODE;
   mode: MODE = MODE.DISPLAY;
@@ -50,17 +52,26 @@ export class EventDetailsComponent implements OnInit {
     if (!this.event) { return; }
 
     if (this.event.expired) {
-      this.expired.emit(this.event);
-      this.timeLeft = null;
+      this.onEventExpired();
     } else {
-      const now = moment(datetime);
-      const end = moment(this.event.end);
-      const duration = moment.duration(end.diff(now));
-
-      this.timeLeft = duration.humanize();
+      this.calcTimeLeft(datetime);
     }
   }
 
+  onEventExpired() {
+    this.expired.emit(this.event);
+    this.timeLeft = null;
+  }
+
+  calcTimeLeft(datetime) {
+    const now = moment(datetime);
+    const end = moment(this.event.end);
+    const duration = moment.duration(end.diff(now));
+
+    this.timeLeft = duration.humanize();
+  }
+
+  // BUTTON HANDLERS
   onExtendClick() {
     this.mode = MODE.EXTEND;
     this._end = new Date(+this.event.end);
@@ -75,13 +86,18 @@ export class EventDetailsComponent implements OnInit {
 
   onDoneClick() {
     this.mode = MODE.DISPLAY;
-    this.update.emit(this.event);
+
+    if (!moment(this.event.end).isSame(this._end)) {
+      this.update.emit(this.event);
+    }
   }
   onCancelClick() {
     this.mode = MODE.DISPLAY;
     this.event.end = this._end;
+    this.calcTimeLeft(new Date());
   }
 
+  // EXTEND BUTTON HANDLER
   extendBy(minutes) {
     if (!this.event) { return; }
 
@@ -89,5 +105,7 @@ export class EventDetailsComponent implements OnInit {
 
     date.setMinutes(date.getMinutes() + minutes);
     this.event.end = date;
+
+    this.calcTimeLeft(new Date());
   }
 }

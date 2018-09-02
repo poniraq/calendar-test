@@ -1,14 +1,4 @@
-<div
-  class="header"
-  ngClass.lt-md="mat-elevation-z1"
-  >
-  <div class="date">{{ now | async | date:'LLLL d' }}</div>
-  <span class="spacer"></span>
-  <div class="time">{{ now | async | date:'HH:mm:ss' }}</div>
-</div>
-<div
-  class="body"
-  >
+<div class="body">
   <app-event-details
     class="event-details mat-elevation-z1"
     [entry]="entry"
@@ -23,5 +13,9 @@
     (create)="onCreate()">
   </app-event-list>
 
-  <app-event-create *ngIf="createLink" [link]="createLink" (close)="closeQROverlay()"></app-event-create>
+  <app-qr-overlay *ngIf="createLink" [link]="createLink" (click)="closeQROverlay()">
+    <div class="qr-message">
+      Tap anywhere to close
+    </div>
+  </app-qr-overlay>
 </div>

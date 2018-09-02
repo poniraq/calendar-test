@@ -2,7 +2,6 @@
 @import 'queries.scss';
 @import 'fonts.scss';
 
-
 :host {
   background: #ffffff;
   display: flex;
@@ -16,11 +15,20 @@
   padding: 16px 32px;
   
   @include fluid-type(500px, 800px, 26px, 32px);
+  @include fl-lt-md {
+    background: #ffffff;
+    border-bottom: 1px solid $border-color;
+    color: $text-dark;
+  }
 }
 
 .body {
   overflow-y: auto;
   flex: 1;
+
+  @include fl-lt-md {
+    background: $background-color;
+  }
   
   .item {
     display: flex;
@@ -49,16 +57,4 @@
   position: absolute;
   bottom: 16px;
   right: 16px;
-}
-
-@include fl-lt-md {
-  .header {
-    background: #ffffff;
-    border-bottom: 1px solid $border-color;
-    color: $text-dark;
-  }
-
-  .body {
-    background: $background-color;
-  }
 }

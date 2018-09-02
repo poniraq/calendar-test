@@ -4,8 +4,8 @@
 
 <div class="body">
   <ng-container *ngIf="events | async as list">
-  <div
-    *ngFor="let item of list" class="item"
+  <div class="item"
+    *ngFor="let item of list"
     [@foldInOut]="true">
     <span class="summary">
       {{ item.summary || '(No title)' }}

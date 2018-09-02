@@ -6,6 +6,7 @@ import { tap, map, catchError } from 'rxjs/operators';
 import { User, UserData } from './user';
 import * as cookies from 'js-cookie';
 
+
 @Injectable({
   providedIn: CoreModule
 })

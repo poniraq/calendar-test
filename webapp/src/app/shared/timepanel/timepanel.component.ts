@@ -1,15 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-timepanel',
   templateUrl: './timepanel.component.html',
   styleUrls: ['./timepanel.component.scss']
 })
-export class TimepanelComponent implements OnInit {
+export class TimepanelComponent {
+  @Input()
+  public date: Observable<Date>;
 
-  constructor() { }
+  @Input()
+  public displayDate = true;
 
-  ngOnInit() {
-  }
+  @Input()
+  public dateFormat = 'LLLL d';
 
+  @Input()
+  public displayTime = true;
+
+  @Input()
+  public timeFormat = 'HH:mm:ss';
 }

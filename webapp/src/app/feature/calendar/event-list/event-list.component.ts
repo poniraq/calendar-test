@@ -17,7 +17,8 @@ import { Observable } from 'rxjs';
 export class EventListComponent {
   @Input() events: Observable<CalendarEvent[]>;
   @Input() showButton = true;
-  @Output() create: EventEmitter<any> = new EventEmitter();
+
+  @Output() create = new EventEmitter<any>();
 
   onAddClick() {
     this.create.emit(null);

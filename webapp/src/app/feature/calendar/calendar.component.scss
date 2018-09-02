@@ -7,72 +7,57 @@
   flex-direction: column;
 
   padding: 0 32px 32px 32px;
+
+  @include fl-lt-md {
+    display: block;
+    height: 100%;
+    padding: unset;
+  }
 }
 
-.header {
-  height: 80px;
-  line-height: 80px;
-  font-size: 24px;
-  font-weight: bold;
-  color: #636363;
-  display: flex;
-
-  .spacer { flex: 1; }
-}
 .body {
   display: flex;
   flex: 1;
 
+  @include fl-lt-md {
+    display: block;
+    overflow: auto;
+    padding: unset;
+    height: calc(100% - 64px);
+  }
+
   .event-details {
     flex: 5;
     margin-right: 16px;
+
+    @include fl-lt-md {
+      margin-right: unset;
+      margin-bottom: 8px;
+    }
   }
 
   .event-list {
     flex: 3;
     max-width: 360px;
+
+    @include fl-lt-md {
+      max-width: unset;
+    }
   }
 
   .event-details, .event-list {
     overflow: hidden;
     border-radius: 2px;
-  }
-}
 
-@include fl-lt-md {
-  :host {
-    display: block;
-    height: 100%;
-    padding: unset;
-  }
-
-  .header {
-    z-index: 0;
-    height: 64px;
-    line-height: 64px;
-    padding: 0 16px;
-    color: white;
-    background: $primary-color;
-  }
-
-  .body {
-    display: block;
-    overflow: auto;
-    padding: unset;
-    height: calc(100% - 64px);
-
-    .event-details {
-      margin-right: unset;
-      margin-bottom: 8px;
-    }
-  
-    .event-list {
-      max-width: unset;
-    }
-
-    .event-details, .event-list {
+    @include fl-lt-md {
       height: 100%;
       border-radius: unset;
     }
+  }
+
+  .qr-message {
+    padding: 8px;
+    color: #ababab;
+    text-align: center;
   }
 }

@@ -3,18 +3,18 @@ import { Component, EventEmitter, Input, OnInit, Output, HostBinding } from '@an
 import { fadeIn, fadeOut } from '@app/shared/animations';
 
 @Component({
-  selector: 'app-event-create',
-  templateUrl: './event-create.component.html',
-  styleUrls: ['./event-create.component.scss'],
+  selector: 'app-qr-overlay',
+  templateUrl: './qr-overlay.component.html',
+  styleUrls: ['./qr-overlay.component.scss'],
   animations: [
     trigger('fadeInOut', [ fadeIn(), fadeOut() ])
   ]
 })
-export class EventCreateComponent implements OnInit {
+export class QrOverlayComponent implements OnInit {
   @HostBinding('@fadeInOut') fadeInOut;
 
   @Input() link: string;
-  @Output() close = new EventEmitter<any>();
+  @Output() click = new EventEmitter<any>();
 
   constructor() { }
 
@@ -22,7 +22,7 @@ export class EventCreateComponent implements OnInit {
   }
 
   onClick() {
-    this.close.emit();
+    this.click.emit();
   }
 
 }

@@ -3,9 +3,7 @@
     <div fxLayoutAlign="center center" class="code">
       <qrcode [qrdata]="link" [size]="256" [level]="'M'"></qrcode>
     </div>
-    <div class="message">
-      Tap anywhere to close
-    </div>
+    <ng-content></ng-content>
   </div>
 </div>
 
