@@ -15,8 +15,8 @@ enum MODE { DISPLAY, EXTEND }
   styleUrls: ['./event-details.component.scss'],
 
   animations: [
-    trigger('fadeIn', [ fadeIn() ]),
-    trigger('fadeOut', [ fadeOut() ]),
+    trigger('fadeIn', [ fadeIn ]),
+    trigger('fadeOut', [ fadeOut ]),
   ]
 })
 export class EventDetailsComponent implements OnInit {

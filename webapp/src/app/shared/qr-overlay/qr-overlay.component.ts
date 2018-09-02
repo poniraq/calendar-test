@@ -7,7 +7,7 @@ import { fadeIn, fadeOut } from '@app/shared/animations';
   templateUrl: './qr-overlay.component.html',
   styleUrls: ['./qr-overlay.component.scss'],
   animations: [
-    trigger('fadeInOut', [ fadeIn(), fadeOut() ])
+    trigger('fadeInOut', [ fadeIn, fadeOut ])
   ]
 })
 export class QrOverlayComponent implements OnInit {

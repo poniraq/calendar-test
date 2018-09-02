@@ -14,7 +14,7 @@ import { map } from 'rxjs/operators';
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss'],
   animations: [
-    trigger('fadeIn', [ fadeIn() ])
+    trigger('fadeIn', [ fadeIn ])
   ]
 })
 export class CalendarComponent implements OnInit {

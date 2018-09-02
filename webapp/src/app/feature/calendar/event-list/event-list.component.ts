@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./event-list.component.scss'],
 
   animations: [
-    trigger('foldInOut', [ foldIn(), foldOut() ])
+    trigger('foldInOut', [ foldIn, foldOut ])
   ]
 })
 export class EventListComponent {
