@@ -1,5 +1,9 @@
+const host = process.env.REDIS_HOST;
+const port = parseInt(process.env.REDIS_PORT);
+const pswd = process.env.REDIS_PSWD;
+
 module.exports = {
-  host: 'redis-11487.c55.eu-central-1-1.ec2.cloud.redislabs.com',
-  port: 11487,
-  pass: 'E5AMpNwvWs9JohhIkAKToPjW8PwwK8g2'
+  host: host,
+  port: port,
+  pass: pswd
 };

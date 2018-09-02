@@ -12,5 +12,18 @@ module.exports = {
     modelPaths: [
       resolve(__dirname, '../models/**/*.model.js')
     ]
+  },
+
+  production: {
+    driver: 'pg',
+    dialect: 'postgres',
+    url: process.env.DATABASE_URL,
+    dialectOptions: {
+      ssl: true
+    },
+
+    modelPaths: [
+      resolve(__dirname, '../models/**/*.model.js')
+    ]
   }
 }

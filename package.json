@@ -1,0 +1,31 @@
+{
+  "name": "calendar-test",
+  "version": "1.0.0",
+  "description": "test calendar application",
+  "main": "server/dist/app.js",
+  "scripts": {
+    "postinstall": "scripts/build.sh",
+    "heroku-postbuild": "scripts/cleanup.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/poniraq/calendar-test.git"
+  },
+  "author": "poniraq@gmail.com",
+  "license": "WTFPL",
+  "bugs": {
+    "url": "https://github.com/poniraq/calendar-test/issues"
+  },
+  "homepage": "https://github.com/poniraq/calendar-test#readme",
+
+  "engines": {
+    "node": "10.9.0",
+    "npm": "6.4.1"
+  },
+
+  "cacheDirectories": [
+    "server/node_modules",
+    "webapp/node_modules" 
+  ]
+}
